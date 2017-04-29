@@ -8,9 +8,12 @@ Vue.use(Vuex)
 
 const state = {
     userInfo: {
-        // userName: 'hcxowe',
-        // description: 'this is description',
-        // displayItem: []
+        userName: '',
+        description: '',
+        displayItem: {
+            sitesInner: [],
+            sitesOuter: []
+        }
     }
 }
 

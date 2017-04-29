@@ -79,7 +79,7 @@
   export default {
     name: 'home',
     mounted: function () {
-      this.drawBackgournd();
+      this.drawBackgournd()
 
       this.$store.dispatch('getUserInfo').then(() => {
         console.log('已获取数据触发')

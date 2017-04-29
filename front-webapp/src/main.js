@@ -5,6 +5,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+import actions from './store/actions'
 
 import 'bootstrap/dist/css/bootstrap.css'
 
@@ -17,4 +18,4 @@ new Vue({
     store,
     template: '<App/>',
     components: { App }
-});
+})
