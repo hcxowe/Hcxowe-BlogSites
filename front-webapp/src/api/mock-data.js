@@ -27,5 +27,14 @@ export const userInfo = {
                 { name: '知乎', url: 'https://www.zhihu.com/people/rachel' }
             ]
         }
+    },
+
+    notFind: {
+        userName: '404',
+        description: 'The User Is Not Found!',
+        displayItem: {
+            sitesInner: [],
+            sitesOuter: []
+        }
     }
 };

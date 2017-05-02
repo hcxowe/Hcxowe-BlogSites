@@ -1,28 +1,69 @@
 <template>
     <div class="blog-container">
-        <nav class="navbar navbar-inverse" role="navigation">
-            <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" :href="'/'+ userInfo.userName.toLowerCase()">{{ userInfo.userName }}的博客</a>
-            </div>
-            <div>
-                <ul class="nav navbar-nav">
-                    <li><router-link :to="{ name: 'blogHome', params: { username: userInfo.userName.toLowerCase() }}">首页</router-link></li>
-                    <li><router-link :to="{ name: 'blogArticle', params: { username: userInfo.userName.toLowerCase() }}">文章</router-link></li>
-                    <li><router-link :to="{ name: 'blogRead', params: { username: userInfo.userName.toLowerCase() }}">阅读</router-link></li>
-                    <li><router-link :to="{ name: 'blogLife', params: { username: userInfo.userName.toLowerCase() }}">人生</router-link></li>
-                </ul>
+        <header>
+            <h1>hcxowe</h1>
 
-                <ul class="nav navbar-nav pull-right">
-                    <!--<li><router-link to="/blog/center">个人中心</router-link></li>-->
-                    <!--<li><a href="/">退出</a></li>-->
-                </ul>
+            <div class="area-login pull-right">
+                <a href="javascript:void(0);">注册</a>
+                <span class="vr-line"></span>
+                <a href="javascript:void(0);">登陆</a>
             </div>
-            </div>
-        </nav>
-        <router-view></router-view>
+        </header>
+
+
     </div>
 </template>
+
+<style lang="less">
+    .vr-line {
+        border: 1px solid #d9d9d9;
+    }
+
+    .blog-container {
+        width: 100%; 
+        height: 100%;
+        background: url(../assets/bg.jpg) no-repeat;
+        background-size: cover;
+
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0; 
+            width: 100%;
+            height: 42px;
+            background-color: rgba(255,255,255,.94);
+            box-shadow: 0 0 1px 0px rgba(0,0,0,0.3), 0 0 6px 2px rgba(0,0,0,0.15);
+
+            h1 {
+                display: inline-block;
+                line-height: 42px;
+                vertical-align: middle;
+                margin: 0 15px;
+                font-size: 20px;
+            }
+
+            .area-login {
+                display: inline-block;
+                line-height: 42px;
+                margin: 0 15px;
+
+                a {
+                    margin: 0 15px;
+                    color: black;    
+
+                    &:hover {
+                        text-decoration: none;
+                        color: lightcoral;
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    .router-link-active {
+        color: white !important;
+    }
+</style>
 
 <script>
     export default {
@@ -42,16 +83,3 @@
     }
 </script>
 
-<style lang="less">
-    .navbar-header {
-        font-size: 20px;
-    }
-    .navbar {
-        margin-bottom: 0 !important;
-        font-size: 16px;
-        border-radius: 0 !important;
-    }
-    .router-link-active {
-        color: white !important;
-    }
-</style>

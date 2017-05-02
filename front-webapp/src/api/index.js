@@ -5,9 +5,8 @@ const delayed = 1000;
 
 export function getUserInfo(username, callback) {
     setTimeout(() => {
-
         if (typeof data.userInfo[username] === 'undefined') {
-            callback(data.userInfo['hcxowe'])
+            callback(data.userInfo['notFind'])
             return
         }
 
