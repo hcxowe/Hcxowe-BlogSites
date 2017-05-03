@@ -8,6 +8,7 @@ import BlogRead from '../components/BlogRead'
 import BlogLife from '../components/BlogLife'
 import BlogCenter from '../components/BlogCenter'
 import NotFind from '../components/NotFind'
+import BlogPhoto from '../components/BlogPhoto'
 
 Vue.use(Router)
 
@@ -60,6 +61,11 @@ export default new Router({
 					path: 'center',
 					name: 'blogCenter',
 					component: BlogCenter
+				},
+				{
+					path: 'photo',
+					name: 'blogPhoto',
+					component: BlogPhoto
 				}
 			]
 		}

@@ -7,6 +7,7 @@ import router from './router'
 import store from './store'
 import actions from './store/actions'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'font-awesome/css/font-awesome.css'
 
 Vue.config.productionTip = false
 
