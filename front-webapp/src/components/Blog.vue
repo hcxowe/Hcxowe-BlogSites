@@ -214,8 +214,8 @@
 
     .content-container {
         width: 980px;
-        height: 1000px;
-        background-color: #FFF;
+        //height: 1000px;
+        //background-color: #FFF;
         margin: 10px auto;
     }
 
