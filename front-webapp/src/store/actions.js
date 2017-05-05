@@ -8,3 +8,12 @@ export const getUserInfo = ({ commit }, { username }) => {
         })
     })
 }
+
+export const getUserDetail = ({ commit }, { username }) => {
+    return new Promise((resolve, reject) => {
+        api.getUserDetail(username, msg => {
+            commit('getUserDetail', { msg })
+            resolve()
+        })
+    })
+}

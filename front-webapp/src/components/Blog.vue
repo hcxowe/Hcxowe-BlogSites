@@ -15,31 +15,28 @@
                 <div class="user-left">
                     <p class="photo-wrap">
                         <a href="javascript:void(0);">
-                            <img src="../assets/user-small.png" alt="hcxowe">
+                            <img v-bind:src="userDetail.faceImg">
                         </a>
                     </p>
-                    <p class="user-name">HCXOWE</p>
-                    <p class="user-desc">To Find Belong To Own Happiness</p>
+                    <p class="user-name">{{ userInfo.userName }}</p>
+                    <p class="user-desc">{{ userInfo.description }}</p>
                 </div>
                 
                 <div class="user-right">
                     <p>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>    中国 广州市 萝岗区
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>    {{ userDetail.address }}
                     </p>
                     <p>
-                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>    毕业于<a target="_blank" href="http://www2.swust.edu.cn/"> 西南科技大学</a>
+                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>    毕业于<a target="_blank" :href="userDetail.school.url"> {{ userDetail.school.name }}</a>
                     </p>
                     <p>
-                        <i class="fa fa-envelope" aria-hidden="true"></i>    hcxowe@126.com
-                    </p>
-                    <!--<p>
-                        <i class="fa fa-github" aria-hidden="true"></i>    <a href="https://github.com/hcxowe">https://github.com/hcxowe</a>
-                    </p>-->
-                    <p>
-                        <i class="fa fa-birthday-cake" aria-hidden="true"></i>    01-25
+                        <i class="fa fa-envelope" aria-hidden="true"></i>    {{ userDetail.email }}
                     </p>
                     <p>
-                        <i class="fa fa-id-card-o" aria-hidden="true"></i>    前端 / UI / hcxowe
+                        <i class="fa fa-birthday-cake" aria-hidden="true"></i>    {{ userDetail.brithday }}
+                    </p>
+                    <p>
+                        <i class="fa fa-id-card-o" aria-hidden="true"></i>    {{ userDetail.intro }}
                     </p>
                     <p>
                         <i class="fa fa-bars" aria-hidden="true"></i>    <a href="#">more</a>
@@ -184,6 +181,7 @@
         ul {
             height: 100%;
             margin: 0;
+            padding: 0;
             list-style: none;
             &:after {
                 display: block;
@@ -230,12 +228,19 @@
         computed: {
             userInfo () {
                 return this.$store.state.userInfo
+            },
+            userDetail () {
+                return this.$store.state.userDetail;
             }
         },
         mounted: function() {
-            if (this.$store.state.userInfo.userName === '') {
+            if (this.$store.state.userInfo) {
                 this.$store.dispatch('getUserInfo', { username: this.$route.params.username }).then(() => {
                     console.log('已获取数据触发')
+                })
+
+                this.$store.dispatch('getUserDetail', { username: this.$route.params.username }).catch((err) => {
+                    console.log(err);
                 })
             }
         }

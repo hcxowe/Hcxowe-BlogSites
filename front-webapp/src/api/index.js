@@ -14,8 +14,20 @@ export function getUserInfo(username, callback) {
     }, delayed);
 }
 
+export function getUserDetail(username, callback) {
+    setTimeout(function() {
+        callback(data.userDetail);
+    }, delayed);
+}
+
 export function getTimeline(callback) {
     setTimeout(function() {
         callback(data.timelineData);
+    }, delayed);
+}
+
+export function getJotting(callback) {
+    setTimeout(function() {
+        callback(data.jottings);
     }, delayed);
 }

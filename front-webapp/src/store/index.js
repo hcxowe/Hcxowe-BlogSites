@@ -14,6 +14,19 @@ const state = {
             sitesInner: [],
             sitesOuter: []
         }
+    },
+    userDetail: {
+        name: '',
+        description: '',
+        address: '',
+        school: {
+            url: '',
+            name: ''
+        },
+        email: '',
+        brithday: '',
+        intro: '',
+        faceImg: ''
     }
 }
 

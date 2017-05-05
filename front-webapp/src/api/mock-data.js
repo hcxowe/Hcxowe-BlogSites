@@ -119,3 +119,44 @@ export const timelineData = [
         ]
     }
 ];
+
+export const userDetail = {
+    name: 'hcxowe',
+    description: 'To Find Belong To Own Happiness',
+    address: '中国 广州市 萝岗区',
+    school: {
+        url: 'http://www2.swust.edu.cn/',
+        name: '西南科技大学'
+    },
+    email: 'hcxowe@126.com',
+    brithday: '01-25',
+    intro: '前端 / 全栈 / UI / hcxowe',
+    faceImg: '/static/user-small.png'
+};
+
+export const jottings = [
+    {
+        home: '/hcxowe',
+        name: 'hcxowe',
+        faceImg: '/static/user-small.png',
+        time: '2017-05-05 15:40',
+        text: '图片分享',
+        imgs: ['/static/logo.png', '/static/logo.png', '/static/logo.png']
+    },
+    {
+        home: '/hcxowe',
+        name: 'hcxowe',
+        faceImg: '/static/user-small.png',
+        time: '2017-05-05 15:40',
+        text: '图片分享',
+        imgs: ['/static/logo.png', '/static/logo.png', '/static/logo.png']
+    },
+    {
+        home: '/hcxowe',
+        name: 'hcxowe',
+        faceImg: '/static/user-small.png',
+        time: '2017-05-05 15:40',
+        text: '图片分享',
+        imgs: ['/static/logo.png', '/static/logo.png', '/static/logo.png']
+    }
+]

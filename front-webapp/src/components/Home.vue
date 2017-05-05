@@ -81,10 +81,13 @@
 		name: 'home',
 		mounted: function () {
 			this.drawBackgournd()
-
-			//this.$store.dispatch('getUserInfo', { username: this.$route.params.username })
+			
 			this.$store.dispatch('getUserInfo', { username: this.$route.params.username }).then(() => {
 				console.log('已获取数据触发')
+			})
+
+			this.$store.dispatch('getUserDetail', { username: this.$route.params.username }).catch((err) => {
+				console.log(err);
 			})
 		},
 		computed: {

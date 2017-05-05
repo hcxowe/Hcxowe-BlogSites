@@ -19,10 +19,19 @@
 
 <<style lang="less">
     .timeline-container {
+        ul {
+            list-style: none;
+            padding-left: 0;
 
+            li {
+                margin-bottom: 2px;
+                margin-top: 2px;
+            }
+        }
     }
 
     .date-normal {
+        padding: 2px;
         color: #696e78;
         text-decoration: none;
     }
@@ -47,18 +56,13 @@
     .list-months {
         .month {
             .date-normal;
-            margin-left: 50px;
+            margin-left: 53px;
             padding-left: 5px;
             border-left: 4px solid #696e78;
         }
         .month:hover {
             .date-active;
         }
-    }
-
-    ul {
-        list-style: none;
-        padding-left: 0;
     }
 
     .current + .list-months {
