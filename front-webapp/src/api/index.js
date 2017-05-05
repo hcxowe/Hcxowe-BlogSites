@@ -13,3 +13,9 @@ export function getUserInfo(username, callback) {
         callback(data.userInfo[username]);
     }, delayed);
 }
+
+export function getTimeline(callback) {
+    setTimeout(function() {
+        callback(data.timelineData);
+    }, delayed);
+}

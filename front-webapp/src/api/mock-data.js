@@ -38,3 +38,84 @@ export const userInfo = {
         }
     }
 };
+
+export const timelineData = [
+    {
+        year: 2017,
+        count: 60,
+        months: [
+            {
+                month: 5,
+                count: 12
+            },
+            {
+                month: 4,
+                count: 12
+            },
+            {
+                month: 3,
+                count: 12
+            },
+            {
+                month: 2,
+                count: 12
+            },
+            {
+                month: 1,
+                count: 12
+            }
+        ]
+    },
+    {
+        year: 2016,
+        count: 60,
+        months: [
+            {
+                month: 9,
+                count: 12
+            },
+            {
+                month: 7,
+                count: 12
+            },
+            {
+                month: 5,
+                count: 12
+            },
+            {
+                month: 2,
+                count: 12
+            },
+            {
+                month: 1,
+                count: 12
+            }
+        ]
+    },
+    {
+        year: 2015,
+        count: 60,
+        months: [
+            {
+                month: 12,
+                count: 12
+            },
+            {
+                month: 10,
+                count: 12
+            },
+            {
+                month: 8,
+                count: 12
+            },
+            {
+                month: 4,
+                count: 12
+            },
+            {
+                month: 1,
+                count: 12
+            }
+        ]
+    }
+];

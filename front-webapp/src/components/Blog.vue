@@ -27,7 +27,7 @@
                         <i class="fa fa-map-marker" aria-hidden="true"></i>    中国 广州市 萝岗区
                     </p>
                     <p>
-                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>    毕业于<a href="http://www2.swust.edu.cn/"> 西南科技大学</a>
+                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>    毕业于<a target="_blank" href="http://www2.swust.edu.cn/"> 西南科技大学</a>
                     </p>
                     <p>
                         <i class="fa fa-envelope" aria-hidden="true"></i>    hcxowe@126.com
