@@ -4,6 +4,8 @@
             <h1>hcxowe</h1>
 
             <div class="area-login pull-right">
+                <a href="javascript:void(0);" @click.stop.prevent="writeJotting">记录一下</a>
+                <span class="vr-line"></span>
                 <a href="javascript:void(0);">注册</a>
                 <span class="vr-line"></span>
                 <a href="javascript:void(0);">登陆</a>
@@ -223,6 +225,9 @@
 </style>
 
 <script>
+    import Vue from 'vue'
+    
+
     export default {
         name: 'blog',
         computed: {
@@ -242,6 +247,11 @@
                 this.$store.dispatch('getUserDetail', { username: this.$route.params.username }).catch((err) => {
                     console.log(err);
                 })
+            }
+        },
+        methods: {
+            writeJotting: function() {
+                this.$store.state.isWriteJotting = true;
             }
         }
     }

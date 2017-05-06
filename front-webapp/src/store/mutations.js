@@ -5,6 +5,10 @@ export default {
 
     getUserDetail (state, { msg }) {
         state.userDetail = msg;
+    },
+
+    setWriteJotting (state, { isShow }) {
+        state.isWriteJotting = isShow;
     }
 }
 

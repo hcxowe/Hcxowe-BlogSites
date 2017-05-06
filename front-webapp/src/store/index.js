@@ -27,7 +27,8 @@ const state = {
         brithday: '',
         intro: '',
         faceImg: ''
-    }
+    },
+    isWriteJotting: false
 }
 
 export default new Vuex.Store({
