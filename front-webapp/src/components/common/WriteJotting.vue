@@ -1,5 +1,5 @@
 <template>
-    <div class="mark">
+    <div class="popwnd-mark">
         <div class="popwnd-jotting">
             <div class="panel-title">
                 <label>记录点滴, 留住回忆</label>
@@ -11,7 +11,7 @@
             </div>
 
             <div class="panel-content">
-                <textarea rows="5" ref="editJotting" @input="getFontCount"></textarea>
+                <textarea rows="5" ref="editJotting" @input="getFontCount" v-model="content"></textarea>
             </div>
 
             <div class="panel-tool">
@@ -24,7 +24,7 @@
 </template>
 
 <style lang="less">
-    .mark {
+    .popwnd-mark {
         position: absolute;
         left: 0; right: 0; top: 0; bottom: 0;
         color: black;
@@ -119,7 +119,8 @@
         name: 'WriteJotting',
         data: function() {
             return {
-                fontCount: 0
+                fontCount: 0,
+                content: ""
             }
         },
         computed: {
@@ -128,17 +129,17 @@
         methods: {
             closePopWnd: function() {
                 this.$store.commit('setWriteJotting', { isShow: false })
+                this.content = ""
+                this.fontCount = 0
             },
             getTextareaRows: function() {
                 console.log(this.$refs.editJotting.value.split(/\r?\n/).length);
             },
             getFontCount: function(evt) {
-                this.fontCount = evt.target.value.length;
+                this.fontCount = this.content.length;
             },
             publishJotting: function() {
-                this.$store.commit('setWriteJotting', { isShow: false })
-                this.$refs.editJotting.value = ""
-                this.fontCount = 0
+                this.closePopWnd();
             }
         }
     }
