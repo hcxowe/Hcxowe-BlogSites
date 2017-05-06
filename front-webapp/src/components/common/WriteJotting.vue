@@ -1,26 +1,36 @@
 <template>
-    <div class="popwnd-jotting">
-        <div class="panel-title">
-            <label>记录点滴, 留住回忆</label>
-            <a class="panel-close" href="javascript:void(0);" @click.stop.prevent="closePopWnd"><i class="fa fa-times" aria-hidden="true"></i></a>
-        </div>
+    <div class="mark">
+        <div class="popwnd-jotting">
+            <div class="panel-title">
+                <label>记录点滴, 留住回忆</label>
+                <a class="panel-close" href="javascript:void(0);" @click.stop.prevent="closePopWnd"><i class="fa fa-times" aria-hidden="true"></i></a>
+            </div>
 
-        <div class="panel-notice">
-            <label class="pull-right" v-show="fontCount > 0">已经写下{{ fontCount }}字</label>
-        </div>
+            <div class="panel-notice">
+                <label class="pull-right" v-show="fontCount > 0">已经写下{{ fontCount }}字</label>
+            </div>
 
-        <div class="panel-content">
-            <textarea rows="5" ref="editJotting" @input="getFontCount"></textarea>
-        </div>
+            <div class="panel-content">
+                <textarea rows="5" ref="editJotting" @input="getFontCount"></textarea>
+            </div>
 
-        <div class="panel-tool">
-            <i class="fa fa-picture-o" aria-hidden="true"></i>
-            <button class="btn btn-warning pull-right" @click="publishJotting">发布</button>
+            <div class="panel-tool">
+                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                <button class="btn btn-warning pull-right" @click="publishJotting">发布</button>
+            </div>
         </div>
     </div>
+    
 </template>
 
 <style lang="less">
+    .mark {
+        position: absolute;
+        left: 0; right: 0; top: 0; bottom: 0;
+        color: black;
+        background-color: rgba(0, 0, 0, .7)
+    }
+
     .popwnd-jotting {
         position: absolute;
         width: 500px;
@@ -128,6 +138,7 @@
             publishJotting: function() {
                 this.$store.commit('setWriteJotting', { isShow: false })
                 this.$refs.editJotting.value = ""
+                this.fontCount = 0
             }
         }
     }
