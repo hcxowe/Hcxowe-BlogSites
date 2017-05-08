@@ -169,12 +169,18 @@
                     }
 
                     // 限制拖动范围
-                    //var left = 0, top = 0;
+                    var left = 0, top = 0;
 
-                    // if (evt.pageX - startPoint.x < 0) {
-                    //      left = 0;
-                    // }
-                    // else if(evt.pageX - startPoint.x + el.parentNode.offsetWidth > document.body.clientWidth) {
+                    if (evt.pageX - startPoint.x - el.parentNode.offsetWidth / 2 < 0) {
+                        left = el.parentNode.offsetWidth / 2;
+                    }
+                    else if (evt.pageX + el.parentNode.offsetWidth - (startPoint.x + el.parentNode.offsetWidth/2) > document.body.clientWidth) {
+                        left = document.body.clientWidth - el.parentNode.offsetWidth / 2;
+                    }
+                    else {
+                        left = evt.pageX - startPoint.x
+                    }
+                    // else if() {
                     //     left = document.body.clientWidth - el.parentNode.offsetWidth;
                     // }
 
@@ -189,7 +195,7 @@
                     //el.parentNode.style.top = top + 'px';
                     //console.log(`${left}, ${top}`);
 
-                    el.parentNode.style.left = evt.pageX - startPoint.x + 'px'
+                    el.parentNode.style.left = left + 'px'
                     el.parentNode.style.top = evt.pageY - startPoint.y + 'px'
                 })
                 
