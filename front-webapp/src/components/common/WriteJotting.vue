@@ -1,7 +1,7 @@
 <template>
     <div class="popwnd-mark">
         <div class="popwnd-jotting">
-            <div class="panel-title">
+            <div class="panel-title" v-drag>
                 <label>记录点滴, 留住回忆</label>
                 <a class="panel-close" href="javascript:void(0);" @click.stop.prevent="closePopWnd"><i class="fa fa-times" aria-hidden="true"></i></a>
             </div>
@@ -125,6 +125,78 @@
         },
         computed: {
             
+        },
+        directives: {
+            drag: function(el, binding) {
+                var isDrag = false,
+                    startPoint = {
+                        x: 0,
+                        y: 0
+                    };
+
+                function offset(node) {
+                    var totalLeft = null, 
+                        totalTop = null,
+                        parent = node.offsetParent
+
+                    totalLeft += node.offsetLeft
+                    totalTop += node.offsetTop
+
+                    while(parent) {
+                        totalLeft += parent.offsetLeft
+                        totalTop += parent.offsetTop
+                        parent = parent.offsetParent
+                    }
+
+                    return {
+                        left: totalLeft,
+                        top: totalTop
+                    }
+                }
+
+                el.addEventListener('mousedown', function(evt) {
+                    isDrag = true;
+                    
+                    var offsetXY = offset(evt.target)
+
+                    startPoint.x = evt.pageX - offsetXY.left; 
+                    startPoint.y = evt.pageY - offsetXY.top;
+                })
+
+                document.addEventListener('mousemove', function(evt) {
+                    if (!isDrag) {
+                        return;
+                    }
+
+                    // 限制拖动范围
+                    //var left = 0, top = 0;
+
+                    // if (evt.pageX - startPoint.x < 0) {
+                    //      left = 0;
+                    // }
+                    // else if(evt.pageX - startPoint.x + el.parentNode.offsetWidth > document.body.clientWidth) {
+                    //     left = document.body.clientWidth - el.parentNode.offsetWidth;
+                    // }
+
+                    // if (evt.pageY - startPoint.Y < 0) {
+                    //     top = 0;
+                    // }
+                    // else if(evt.pageX - startPoint.y + el.parentNode.offsetHeight > document.body.clientHeight) {
+                    //     top = document.body.clientHieght - el.parentNode.offsetHeight;
+                    // }
+
+                    //el.parentNode.style.left = left + 'px';
+                    //el.parentNode.style.top = top + 'px';
+                    //console.log(`${left}, ${top}`);
+
+                    el.parentNode.style.left = evt.pageX - startPoint.x + 'px'
+                    el.parentNode.style.top = evt.pageY - startPoint.y + 'px'
+                })
+                
+                document.addEventListener('mouseup', function() {
+                    isDrag = false;
+                })
+            } 
         },
         methods: {
             closePopWnd: function() {
