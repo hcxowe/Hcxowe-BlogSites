@@ -156,6 +156,8 @@
 
                 el.addEventListener('mousedown', function(evt) {
                     isDrag = true;
+
+                    el.style.cursor = 'move';
                     
                     var offsetXY = offset(evt.target)
 
@@ -174,33 +176,30 @@
                     if (evt.pageX - startPoint.x - el.parentNode.offsetWidth / 2 < 0) {
                         left = el.parentNode.offsetWidth / 2;
                     }
-                    else if (evt.pageX + el.parentNode.offsetWidth - (startPoint.x + el.parentNode.offsetWidth/2) > document.body.clientWidth) {
+                    else if (evt.pageX + el.parentNode.offsetWidth - (startPoint.x + el.parentNode.offsetWidth / 2) > document.body.clientWidth) {
                         left = document.body.clientWidth - el.parentNode.offsetWidth / 2;
                     }
                     else {
                         left = evt.pageX - startPoint.x
                     }
-                    // else if() {
-                    //     left = document.body.clientWidth - el.parentNode.offsetWidth;
-                    // }
-
-                    // if (evt.pageY - startPoint.Y < 0) {
-                    //     top = 0;
-                    // }
-                    // else if(evt.pageX - startPoint.y + el.parentNode.offsetHeight > document.body.clientHeight) {
-                    //     top = document.body.clientHieght - el.parentNode.offsetHeight;
-                    // }
-
-                    //el.parentNode.style.left = left + 'px';
-                    //el.parentNode.style.top = top + 'px';
-                    //console.log(`${left}, ${top}`);
+                    
+                    if (evt.pageY - startPoint.y - el.parentNode.offsetHeight / 2 < 0) {
+                        top = el.parentNode.offsetHeight / 2;
+                    }
+                    else if(evt.pageY + el.parentNode.offsetHeight - startPoint.y - el.parentNode.offsetHeight / 2  > document.body.clientHeight) {
+                        top = document.body.clientHieght - el.parentNode.offsetHeight / 2;
+                    }
+                    else {
+                        top = evt.pageY - startPoint.y
+                    }
 
                     el.parentNode.style.left = left + 'px'
-                    el.parentNode.style.top = evt.pageY - startPoint.y + 'px'
+                    el.parentNode.style.top = top + 'px'
                 })
                 
                 document.addEventListener('mouseup', function() {
                     isDrag = false;
+                    el.style.cursor = 'normal';
                 })
             } 
         },
