@@ -26,14 +26,14 @@
 
 <style lang="less">
     .popwnd-enter {
-        transform: scale(1.2);
+        transform: scale(1.1);
         opacity: 0;
     }
     .popwnd-enter-active {
         transition: all .3s ease;
     }
     .popwnd-leave-active {
-        transform: scale(1.2);
+        transform: scale(1.1);
         opacity: 0;
         transition: all .3s ease;
     }

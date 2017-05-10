@@ -78,7 +78,6 @@
     import * as api from '../../api'
 
     export default {
-        name: 'TimerLine',
         data: function() {
             return {
                 dateTime: [],
