@@ -1,29 +1,43 @@
 <template>
-    <div class="popwnd-mark">
-        <div class="popwnd-jotting">
-            <div class="panel-title" v-drag>
-                <label>记录点滴, 留住回忆</label>
-                <a class="panel-close" href="javascript:void(0);" @click.stop.prevent="closePopWnd"><i class="fa fa-times" aria-hidden="true"></i></a>
-            </div>
+    <transition name="popwnd" >
+        <div class="popwnd-mark">
+            <div class="popwnd-jotting">
+                <div class="panel-title" v-drag>
+                    <label>记录点滴, 留住回忆</label>
+                    <a class="panel-close" href="javascript:void(0);" @click.stop.prevent="closePopWnd"><i class="fa fa-times" aria-hidden="true"></i></a>
+                </div>
 
-            <div class="panel-notice">
-                <label class="pull-right" v-show="fontCount > 0">已经写下{{ fontCount }}字</label>
-            </div>
+                <div class="panel-notice">
+                    <label class="pull-right" v-show="fontCount > 0">已经写下{{ fontCount }}字</label>
+                </div>
 
-            <div class="panel-content">
-                <textarea rows="5" ref="editJotting" @input="getFontCount" v-model="content"></textarea>
-            </div>
+                <div class="panel-content">
+                    <textarea rows="5" ref="editJotting" @input="getFontCount" v-model="content"></textarea>
+                </div>
 
-            <div class="panel-tool">
-                <i class="fa fa-picture-o" aria-hidden="true"></i>
-                <button class="btn btn-warning pull-right" @click="publishJotting">发布</button>
+                <div class="panel-tool">
+                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+                    <button class="btn btn-warning pull-right" @click="publishJotting">发布</button>
+                </div>
             </div>
         </div>
-    </div>
-    
+    </transition>
 </template>
 
 <style lang="less">
+    .popwnd-enter {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+    .popwnd-enter-active {
+        transition: all .3s ease;
+    }
+    .popwnd-leave-active {
+        transform: scale(1.2);
+        opacity: 0;
+        transition: all .3s ease;
+    }
+
     .popwnd-mark {
         position: absolute;
         left: 0; right: 0; top: 0; bottom: 0;
@@ -127,85 +141,87 @@
             
         },
         directives: {
-            drag: function(el, binding) {
-                var isDrag = false,
-                    startPoint = {
-                        x: 0,
-                        y: 0
-                    };
+            drag: {
+                inserted (el) {
+                    var isDrag = false,
+                        startPoint = {
+                            x: 0,
+                            y: 0
+                        };
 
-                function offset(node) {
-                    var totalLeft = null, 
-                        totalTop = null,
-                        parent = node.offsetParent
+                    function offset(node) {
+                        var totalLeft = null, 
+                            totalTop = null,
+                            parent = node.offsetParent
 
-                    totalLeft += node.offsetLeft
-                    totalTop += node.offsetTop
+                        totalLeft += node.offsetLeft
+                        totalTop += node.offsetTop
 
-                    while(parent) {
-                        totalLeft += parent.offsetLeft
-                        totalTop += parent.offsetTop
-                        parent = parent.offsetParent
+                        while(parent) {
+                            totalLeft += parent.offsetLeft
+                            totalTop += parent.offsetTop
+                            parent = parent.offsetParent
+                        }
+
+                        return {
+                            left: totalLeft,
+                            top: totalTop
+                        }
                     }
 
-                    return {
-                        left: totalLeft,
-                        top: totalTop
-                    }
+                    el.addEventListener('mousedown', function(evt) {
+                        isDrag = true;
+
+                        el.style.cursor = 'move';
+                        
+                        var offsetXY = offset(evt.target)
+
+                        startPoint.x = evt.pageX - offsetXY.left; 
+                        startPoint.y = evt.pageY - offsetXY.top;
+                    })
+
+                    document.addEventListener('mousemove', function(evt) {
+                        if (!isDrag) {
+                            return;
+                        }
+
+                        // 限制拖动范围
+                        var left = 0, top = 0;
+
+                        if (evt.pageX - startPoint.x - el.parentNode.offsetWidth / 2 < 0) {
+                            left = el.parentNode.offsetWidth / 2;
+                        }
+                        else if (evt.pageX + el.parentNode.offsetWidth - (startPoint.x + el.parentNode.offsetWidth / 2) > document.body.clientWidth) {
+                            left = document.body.clientWidth - el.parentNode.offsetWidth / 2;
+                        }
+                        else {
+                            left = evt.pageX - startPoint.x
+                        }
+                        
+                        if (evt.pageY - startPoint.y - el.parentNode.offsetHeight / 2 < 0) {
+                            top = el.parentNode.offsetHeight / 2;
+                        }
+                        else if(evt.pageY + el.parentNode.offsetHeight - startPoint.y - el.parentNode.offsetHeight / 2  > document.body.clientHeight) {
+                            top = document.body.clientHieght - el.parentNode.offsetHeight / 2;
+                        }
+                        else {
+                            top = evt.pageY - startPoint.y
+                        }
+
+                        el.parentNode.style.left = left + 'px'
+                        el.parentNode.style.top = top + 'px'
+                    })
+                    
+                    document.addEventListener('mouseup', function() {
+                        isDrag = false;
+                        el.style.cursor = 'normal';
+                    })
                 }
-
-                el.addEventListener('mousedown', function(evt) {
-                    isDrag = true;
-
-                    el.style.cursor = 'move';
-                    
-                    var offsetXY = offset(evt.target)
-
-                    startPoint.x = evt.pageX - offsetXY.left; 
-                    startPoint.y = evt.pageY - offsetXY.top;
-                })
-
-                document.addEventListener('mousemove', function(evt) {
-                    if (!isDrag) {
-                        return;
-                    }
-
-                    // 限制拖动范围
-                    var left = 0, top = 0;
-
-                    if (evt.pageX - startPoint.x - el.parentNode.offsetWidth / 2 < 0) {
-                        left = el.parentNode.offsetWidth / 2;
-                    }
-                    else if (evt.pageX + el.parentNode.offsetWidth - (startPoint.x + el.parentNode.offsetWidth / 2) > document.body.clientWidth) {
-                        left = document.body.clientWidth - el.parentNode.offsetWidth / 2;
-                    }
-                    else {
-                        left = evt.pageX - startPoint.x
-                    }
-                    
-                    if (evt.pageY - startPoint.y - el.parentNode.offsetHeight / 2 < 0) {
-                        top = el.parentNode.offsetHeight / 2;
-                    }
-                    else if(evt.pageY + el.parentNode.offsetHeight - startPoint.y - el.parentNode.offsetHeight / 2  > document.body.clientHeight) {
-                        top = document.body.clientHieght - el.parentNode.offsetHeight / 2;
-                    }
-                    else {
-                        top = evt.pageY - startPoint.y
-                    }
-
-                    el.parentNode.style.left = left + 'px'
-                    el.parentNode.style.top = top + 'px'
-                })
-                
-                document.addEventListener('mouseup', function() {
-                    isDrag = false;
-                    el.style.cursor = 'normal';
-                })
-            } 
+            }
         },
         methods: {
             closePopWnd: function() {
-                this.$store.commit('setWriteJotting', { isShow: false })
+                this.$emit('close')
                 this.content = ""
                 this.fontCount = 0
             },

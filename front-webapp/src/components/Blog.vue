@@ -4,7 +4,7 @@
             <h1>hcxowe</h1>
 
             <div class="area-login pull-right">
-                <a href="javascript:void(0);" @click.stop.prevent="writeJotting">记录一下</a>
+                <a href="javascript:void(0);" @click.stop.prevent="showJottingWnd = true">记录一下</a>
                 <span class="vr-line"></span>
                 <a href="javascript:void(0);">注册</a>
                 <span class="vr-line"></span>
@@ -59,6 +59,8 @@
                 <router-view></router-view>
             </div>   
         </section>
+
+        <WirteJottingWnd v-if="showJottingWnd" @close="showJottingWnd = false"></WirteJottingWnd>
     </div>
 </template>
 
@@ -226,10 +228,15 @@
 
 <script>
     import Vue from 'vue'
-    
+    import WirteJottingWnd from './common/WriteJotting.vue'
 
     export default {
         name: 'blog',
+        data () {
+            return {
+                showJottingWnd: false
+            }
+        },
         computed: {
             userInfo () {
                 return this.$store.state.userInfo
@@ -251,8 +258,11 @@
         },
         methods: {
             writeJotting: function() {
-                this.$store.state.isWriteJotting = true;
+                this.showJottingWnd = !this.showJottingWnd;
             }
+        },
+        components: {
+            WirteJottingWnd
         }
     }
 </script>
