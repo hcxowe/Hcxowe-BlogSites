@@ -26,8 +26,35 @@ export function getTimeline(callback) {
     }, delayed);
 }
 
-export function getJotting(callback) {
+export function getJottings(username, callback) {
     setTimeout(function() {
-        callback(data.jottings);
+        callback({
+            ret: 0,
+            msg: 'success',
+            body: {
+                jottings: data.jottings
+            }
+        });
+    }, delayed);
+}
+
+export function addJotting(jotting, callback) {
+    setTimeout(function() {
+        callback({
+            ret: 0,
+            msg: 'success',
+            body: {
+                id: new Date().getTime()
+            }
+        });
+    }, delayed);
+}
+
+export function deleteJotting(id, callback) {
+    setTimeout(function() {
+        callback({
+            ret: 0,
+            msg: 'success'
+        });
     }, delayed);
 }

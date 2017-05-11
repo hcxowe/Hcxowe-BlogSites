@@ -28,14 +28,18 @@
 <script>
     import TimerLine from './common/TimerLine.vue'
     import Jotting from './common/Jotting.vue'
-    import * as api from '../api'
+    import * as types from '../store/modules/blogHome/types'
 
     export default {
         components: { TimerLine, Jotting },
         name: 'BlogHome',
         data: function() {
             return {
-                jottings: []
+            }
+        },
+        computed: {
+            jottings: function() {
+                return this.$store.state.blogHome.jottings;
             }
         },
         methods: {
@@ -44,11 +48,7 @@
             }
         },
         created: function() {
-            var self = this;
-
-            api.getJotting(function(data) {
-                self.$data.jottings = data;
-            })
+            this.$store.dispatch(types.BLOGHOME_GET_JOTTINGS, this.$store.state.userInfo.userName);
         }
     }
 </script>
