@@ -1,26 +1,26 @@
 <template>
     <transition name="popwnd" >
-        <div class="popwnd-mark">
-            <div class="popwnd-jotting">
-                <div class="panel-title" v-drag>
-                    <label>记录点滴, 留住回忆</label>
-                    <a class="panel-close" href="javascript:void(0);" @click.stop.prevent="closePopWnd"><i class="fa fa-times" aria-hidden="true"></i></a>
-                </div>
+            <div class="popwnd-mark">
+                <div class="popwnd-jotting">
+                    <div class="panel-title" v-drag>
+                        <label>记录点滴, 留住回忆</label>
+                        <a class="panel-close" href="javascript:void(0);" @click.stop.prevent="closePopWnd"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    </div>
 
-                <div class="panel-notice">
-                    <label class="pull-right" v-show="fontCount > 0">已经写下{{ fontCount }}字</label>
-                </div>
+                    <div class="panel-notice">
+                        <label class="pull-right" v-show="fontCount > 0">已经写下{{ fontCount }}字</label>
+                    </div>
 
-                <div class="panel-content">
-                    <textarea rows="5" ref="editJotting" @input="getFontCount" v-model="content"></textarea>
-                </div>
+                    <div class="panel-content">
+                        <textarea rows="5" ref="editJotting" @input="getFontCount" v-model="content"></textarea>
+                    </div>
 
-                <div class="panel-tool">
-                    <i class="fa fa-picture-o" aria-hidden="true"></i>
-                    <button class="btn btn-warning pull-right" @click="publishJotting">发布</button>
+                    <div class="panel-tool">
+                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                        <button class="btn btn-warning pull-right" @click="publishJotting">发布</button>
+                    </div>
                 </div>
             </div>
-        </div>
     </transition>
 </template>
 
@@ -232,6 +232,9 @@
                 this.fontCount = this.content.length;
             },
             publishJotting: function() {
+
+                
+
                 this.closePopWnd();
             }
         }

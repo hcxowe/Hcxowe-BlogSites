@@ -56,7 +56,9 @@
             </div>
 
             <div class="content-container">
-                <router-view></router-view>
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
             </div>   
         </section>
 
