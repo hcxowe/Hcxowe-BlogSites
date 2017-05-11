@@ -8,11 +8,11 @@
                     </div>
 
                     <div class="panel-notice">
-                        <label class="pull-right" v-show="fontCount > 0">已经写下{{ fontCount }}字</label>
+                        <label class="pull-right" v-show="content.length > 0">已经写下{{ content.length }}字</label>
                     </div>
 
                     <div class="panel-content">
-                        <textarea rows="5" ref="editJotting" @input="getFontCount" v-model="content"></textarea>
+                        <textarea rows="5" ref="editJotting" v-model="content" v-focus></textarea>
                     </div>
 
                     <div class="panel-tool">
@@ -93,7 +93,7 @@
                 resize: none;
                 border: 1px solid #ccc;
                 outline: none;
-
+                
                 &:focus {
                     border: 1px solid #f0ad4e;
                 }
@@ -219,6 +219,12 @@
                         el.style.cursor = 'normal';
                     })
                 }
+            },
+
+            focus: {
+                inserted: function(el) {
+                    el.focus();
+                }
             }
         },
         methods: {
@@ -241,12 +247,6 @@
                 this.$emit('close')
                 this.content = ""
                 this.fontCount = 0
-            },
-            getTextareaRows: function() {
-                console.log(this.$refs.editJotting.value.split(/\r?\n/).length);
-            },
-            getFontCount: function(evt) {
-                this.fontCount = this.content.length;
             },
             publishJotting: function() {
                 var self = this;

@@ -63,6 +63,10 @@
             p:nth-child(2) {
                 color: #808080;
             }
+
+            p:nth-child(3) {
+                white-space: pre;
+            }
         } 
 
         .jottimg-container {
