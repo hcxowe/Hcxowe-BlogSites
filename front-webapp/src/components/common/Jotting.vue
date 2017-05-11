@@ -12,7 +12,7 @@
             <p>{{ jotting.text }}</p>
         </div>
 
-        <div class="jottimg-container">
+        <div class="jottimg-container" v-if="jotting.imgs && jotting.imgs.length!=0">
             <ul>
                 <li v-for="item in jotting.imgs">
                     <img :src="item">

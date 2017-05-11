@@ -136,6 +136,7 @@ export const userDetail = {
 
 export const jottings = [
     {
+        id: 1,
         home: '/hcxowe',
         name: 'hcxowe',
         faceImg: '/static/user-small.png',
@@ -144,6 +145,7 @@ export const jottings = [
         imgs: ['/static/logo.png', '/static/logo.png', '/static/logo.png']
     },
     {
+        id: 2,
         home: '/hcxowe',
         name: 'hcxowe',
         faceImg: '/static/user-small.png',
@@ -152,6 +154,7 @@ export const jottings = [
         imgs: ['/static/logo.png', '/static/logo.png', '/static/logo.png']
     },
     {
+        id: 3,
         home: '/hcxowe',
         name: 'hcxowe',
         faceImg: '/static/user-small.png',

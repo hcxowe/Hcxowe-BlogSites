@@ -129,7 +129,7 @@
 </style>
 
 <script>
-    import * as types from '../store/modules/blogHome/types'
+    import * as types from '../../store/modules/blogHome/types'
 
     export default {
         name: 'WriteJotting',
@@ -223,19 +223,19 @@
         },
         methods: {
             dateFormat: function(date, fmt) {
-                // var o = {
-                //     "M+": date.getMonth() + 1, //月份 
-                //     "d+": date.getDate(), //日 
-                //     "h+": date.getHours(), //小时 
-                //     "m+": date.getMinutes(), //分 
-                //     "s+": date.getSeconds(), //秒 
-                //     "q+": Math.floor((date.getMonth() + 3) / 3), //季度 
-                //     "S": date.getMilliseconds() //毫秒 
-                // };
-                // if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
-                // for (var k in o)
-                // if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-                // return fmt;
+                var o = {
+                    "M+": date.getMonth() + 1, //月份 
+                    "d+": date.getDate(), //日 
+                    "h+": date.getHours(), //小时 
+                    "m+": date.getMinutes(), //分 
+                    "s+": date.getSeconds(), //秒 
+                    "q+": Math.floor((date.getMonth() + 3) / 3), //季度 
+                    "S": date.getMilliseconds() //毫秒 
+                };
+                if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+                for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                return fmt;
             },
             closePopWnd: function() {
                 this.$emit('close')
@@ -249,13 +249,14 @@
                 this.fontCount = this.content.length;
             },
             publishJotting: function() {
-                // this.$store.dispatch(types.BLOGHOME_ADD_JOTTINGS, {
-                //     home: '/hcxowe',
-                //     name: 'hcxowe',
-                //     faceImg: '/static/user-small.png',
-                //     //time: dateFormat(new Date(), 'yyyy-MM-dd hh:mm:ss'),
-                //     text: this.content
-                // });
+                var self = this;
+                this.$store.dispatch(types.BLOGHOME_ADD_JOTTINGS, {
+                    home: '/hcxowe',
+                    name: 'hcxowe',
+                    faceImg: '/static/user-small.png',
+                    time: self.dateFormat(new Date(), 'yyyy-MM-dd hh:mm:ss'),
+                    text: self.content
+                });
 
                 this.closePopWnd();
             }

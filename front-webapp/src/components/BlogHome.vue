@@ -39,7 +39,7 @@
         },
         computed: {
             jottings: function() {
-                return this.$store.state.blogHome.jottings;
+                return this.$store.state.blogHome.jottings.slice(0).reverse();
             }
         },
         methods: {
