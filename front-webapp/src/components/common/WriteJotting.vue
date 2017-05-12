@@ -4,7 +4,7 @@
                 <div class="popwnd-jotting">
                     <div class="panel-title" v-drag>
                         <label>记录点滴, 留住回忆</label>
-                        <a class="panel-close" href="javascript:void(0);" @click.stop.prevent="closePopWnd"><i class="fa fa-times" aria-hidden="true"></i></a>
+                        <a class="panel-close" href="javascript:void(0);" @mousedown.stop @click.stop="closePopWnd"><i class="fa fa-times" aria-hidden="true"></i></a>
                     </div>
 
                     <div class="panel-notice">
@@ -173,19 +173,22 @@
 
                     el.addEventListener('mousedown', function(evt) {
                         isDrag = true;
-
                         el.style.cursor = 'move';
-                        
+
+                        document.addEventListener('mousemove', onMouseMove);
+
                         var offsetXY = offset(evt.target)
 
-                        startPoint.x = evt.pageX - offsetXY.left; 
-                        startPoint.y = evt.pageY - offsetXY.top;
+                        startPoint.x = evt.pageX - offsetXY.left 
+                        startPoint.y = evt.pageY - offsetXY.top
                     })
 
-                    document.addEventListener('mousemove', function(evt) {
+                    function onMouseMove(evt) {
                         if (!isDrag) {
                             return;
                         }
+
+                        document.addEventListener('mouseup', onMouseUp);
 
                         // 限制拖动范围
                         var left = 0, top = 0;
@@ -212,12 +215,15 @@
 
                         el.parentNode.style.left = left + 'px'
                         el.parentNode.style.top = top + 'px'
-                    })
-                    
-                    document.addEventListener('mouseup', function() {
+                    };
+
+                    function onMouseUp() {
                         isDrag = false;
-                        el.style.cursor = 'normal';
-                    })
+                        el.style.cursor = 'default';
+
+                        document.removeEventListener('mousemove', onMouseMove);
+                        document.removeEventListener('mouseup', onMouseUp);
+                    }
                 }
             },
 
@@ -249,6 +255,11 @@
                 this.fontCount = 0
             },
             publishJotting: function() {
+                if (this.content.length == 0) {
+                    this.$refs.editJotting.focus();
+                    return;
+                }
+
                 var self = this;
                 this.$store.dispatch(types.BLOGHOME_ADD_JOTTINGS, {
                     home: '/hcxowe',
