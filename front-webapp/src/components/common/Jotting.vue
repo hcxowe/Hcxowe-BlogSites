@@ -92,7 +92,7 @@
             }
 
             p:nth-child(3) {
-                white-space: pre;
+                white-space: pre-wrap;
             }
 
             .fa-angle-down {
