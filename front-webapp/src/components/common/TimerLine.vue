@@ -17,7 +17,7 @@
     </div>
 </template>
 
-<<style lang="less">
+<style lang="less">
     .timeline-container {
         ul {
             list-style: none;

@@ -10,7 +10,7 @@ export default {
     },
 
     [types.BLOGHOME_DELETE_JOTTINGS]: function(state, id) {
-
+        
         let index = 0;
         state.jottings.forEach(function(jotting, i) {
             if (jotting.id === id) {

@@ -39,7 +39,7 @@ export default {
                     return;
                 }
 
-                commit(types.BLOGHOME_ADD_JOTTINGS, id);
+                commit(types.BLOGHOME_DELETE_JOTTINGS, id);
                 resolve();
             }, 1000)
         });

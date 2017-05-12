@@ -6,7 +6,7 @@
 
         <div class="jotting-area">
             <template v-for="jott in jottings">
-                <Jotting v-bind:jotting="jott"></Jotting>
+                <Jotting v-bind:jotting="jott" :hidePopDown="hidePopDown" @display="hidePopDown=false"></Jotting>
             </template>
         </div>
     </div>
@@ -35,6 +35,7 @@
         name: 'BlogHome',
         data: function() {
             return {
+                hidePopDown: true
             }
         },
         computed: {
@@ -49,6 +50,12 @@
         },
         created: function() {
             this.$store.dispatch(types.BLOGHOME_GET_JOTTINGS, this.$store.state.userInfo.userName);
+        },
+        mounted: function() {
+            document.addEventListener('click', (evt) => {
+                console.log('document.click');
+                this.hidePopDown = true;
+            });
         }
     }
 </script>

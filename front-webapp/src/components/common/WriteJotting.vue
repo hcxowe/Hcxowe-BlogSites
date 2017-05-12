@@ -139,6 +139,8 @@
                 content: ""
             }
         },
+        mounted: function() {
+        },
         computed: {
             
         },
