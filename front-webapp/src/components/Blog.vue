@@ -131,6 +131,7 @@
             width: 100px;
             height: 100px;
             margin: 0 auto;
+            padding: 0;
             border-radius: 50%;
             box-shadow: 0 0 10px 0 #FFF;
             overflow: hidden;

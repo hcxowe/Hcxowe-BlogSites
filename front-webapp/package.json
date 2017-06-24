@@ -7,11 +7,14 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "watch": "webpack --config build/webpack.prod.conf.js --progress --color --watch",
+    "server": "node server/server.js"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "bootstrap": "^3.3.7",
+    "express": "^4.15.3",
     "font-awesome": "^4.7.0",
     "normalize.css": "^6.0.0",
     "vue": "^2.3.0",
